@@ -10,10 +10,13 @@ using namespace std;
 
     int rand_range(int min, int max){
     int range = max - min + 1;
-    if ((rand() % range + min) % 2 == 0 ){
-        return ((rand() % range + min)+1);
-    }else{
-        return ((rand() % range + min));
+    int random = (rand() % range + min);
+    if (random % 2 == 0 ){
+        random +=1;
+        return (random);
+    }
+    else{
+        return random;
     }
     
 }
@@ -35,7 +38,7 @@ int main(){
         cin >> x ; 
         
 
-
+        //input numbers
         if (x =='A'){
             cout << "Insert column size" << endl;
             cin >> colls ;
@@ -46,10 +49,14 @@ int main(){
             cout << "enter a second char" << endl;
             cin >> b ;
             cout << endl ; 
-
+        try {
         ariel::mat(colls , rows , a , b);
         }
-
+        catch(exception& e){
+            cout << e.what() << endl;
+        }
+        }
+        //random rows and colls
         else if (x=='B'){
 
             colls= rand_range(1, 40); 
@@ -62,7 +69,7 @@ int main(){
             cout << b << endl;
             ariel::mat(colls , rows , a , b);
         }
-
+        // quit
         else if (x =='Q'){
             flag = false;
             cout <<"Bye Bye"<< endl;
