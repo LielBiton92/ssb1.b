@@ -11,8 +11,9 @@ const int MIN = 33;
 
 string ariel::mat(int colls , int rows , char a ,char b){
     if(rows % 2 == 0 || colls % 2 ==0 ){
-        throw std::invalid_argument("error : rows and colls cannot be even numbers");
+        throw std::invalid_argument("");
     }
+        
     if(a < MIN || a>MAX || b < MIN || b > MAX){
         throw std::invalid_argument("error : incorrect char");
     }
@@ -74,12 +75,12 @@ string ariel::mat(int colls , int rows , char a ,char b){
      }
     }  
     for(int i = 0;i < size_rows;i++){ 
-        // if(i>0){
-        // cout << endl;
-        // }
         for(int j = 0 ; j <size_colls; j++){
-         //   cout << rug[i][j] << " ";
+            cout << rug[i][j] << " ";
             res += rug[i][j];
+            if (j == size_colls){
+                cout << endl;
+            }
 
         }
     }

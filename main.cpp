@@ -6,61 +6,72 @@
 using namespace ariel;
 using namespace std;
 
+  
+
+    int rand_range(int min, int max){
+    int range = max - min + 1;
+    if ((rand() % range + min) % 2 == 0 ){
+        return ((rand() % range + min)+1);
+    }else{
+        return ((rand() % range + min));
+    }
+    
+}
+
 int main(){
-    string s;
-    s= ariel::mat(1,15,'@','-');
-    cout << s <<endl;
-    
-    // char n2 = 'b';
-    // char n3 = 'a';
-    // n2 = n3;
-    // cout << n2 <<endl;
-    // int rows = 7 ;
-    // int colls = 5 ; 
-    //  vector<vector<char>> rug (rows,vector<char>(colls,'$'));
-    //  for(int i = 0; i<colls;i++){
-    //     cout << endl;
-    //     for(int j = 0 ; j <rows; j++){
-    //         cout << rug[i][j] << " ";
-    //     }
-    // }
-    // int i , k = 0;
-    // int l = 0 ;
-    // int r = 7;
-    // char x = '@';
-    // for(i=l;i<colls;++i){
-    //     rug[k][i]=x;
-    // }
-    // cout<< endl;
-    //    for(int i = 0; i<colls;i++){
-    //     cout << endl;
-    //     for(int j = 0 ; j <rows; j++){
-    //         cout << rug[i][j] << " ";
-    //     }
-    // }
-    // char n1 = '@';
-    // char n2= '-';
-    // char temp;
-    // if(n1 != int(n2)){
-    //      temp = n1;
-    //      n1 = n2 ; 
-    //      n2 = temp;     
-    //  }
-    //  cout << n1 << "n1"<<endl;
-    //  cout << n2 << "n2"<<endl;
+    bool flag = true ;
+    int colls ; 
+    int rows;
+    char a;
+    char b;
+    char x ; 
 
 
-
-    // for(int i = 0; i<rug.size();i++){
-    //     cout << rug.size()<<""<<i<<endl;
-    //     cout << endl;
-    //     for(int j = 0 ; j <rug[i].size(); j++){
-    //         cout << rug[i][j] << " ";
-    //     }
-    // }
-
-
-    
+    while(flag){
+        cout << endl;
+        cout <<"•"<< "To insert numbers, type A" << endl;
+        cout <<"•"<<"for random variables , type B"<< endl;
+        cout <<"•"<< " to quit , type Q"<< endl;
+        cin >> x ; 
+        
 
 
+        if (x =='A'){
+            cout << "Insert column size" << endl;
+            cin >> colls ;
+            cout << "Insert a row  size" << endl;
+            cin >> rows ;
+            cout << "enter a char" << endl;
+            cin >> a ;
+            cout << "enter a second char" << endl;
+            cin >> b ;
+            cout << endl ; 
+
+        ariel::mat(colls , rows , a , b);
+        }
+
+        else if (x=='B'){
+
+            colls= rand_range(1, 40); 
+            cout << colls<<endl;
+            rows = rand_range(1, 40); 
+            cout << rows<<endl;
+            a = '$'; 
+            cout << a << endl;
+            b = '@';
+            cout << b << endl;
+            ariel::mat(colls , rows , a , b);
+        }
+
+        else if (x =='Q'){
+            flag = false;
+            cout <<"Bye Bye"<< endl;
+        }
+        else if (x!=char('A') or x!=char('B') or x!=char('Q')){
+            cout << "char "<< x <<" "<< "is not in the list"<<" "<<
+             "Please select a value from the list " << endl ;
+        }
+
+
+}
 }
