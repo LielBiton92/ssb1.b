@@ -6,7 +6,7 @@
 using namespace ariel;
 using namespace std;
 
-  
+    
 
     int rand_range(int min, int max){
     int range = max - min + 1;

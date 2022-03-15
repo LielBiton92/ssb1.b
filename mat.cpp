@@ -7,6 +7,7 @@ using namespace ariel;
 using namespace std;
 const int MAX = 126;
 const int MIN = 33;
+string resandprint(vector<vector<char> >&rug ,int rows , int colls );
 
 
 string ariel::mat(int colls , int rows , char a ,char b){
@@ -22,8 +23,6 @@ string ariel::mat(int colls , int rows , char a ,char b){
     }
 
 
-    char n1 = a;
-    char n2 = b;
     char temp = 0;
     int start_row = 0 ;
     int i = 0 ;
@@ -32,59 +31,62 @@ string ariel::mat(int colls , int rows , char a ,char b){
     int size_colls = colls;
     string res;
 
-    vector<vector<char>> rug (rows,vector<char>(colls,'$'));
+    vector<vector<char>> rug (rows,vector<char>(colls));
     
     
 
     while(start_row<rows && start_col<colls){
-        //feel the first row        
+        //feel the first+last row        
         for(i = start_col ;i<colls ; i++){
-            rug[start_row][i]=n1;
+            rug[start_row][i]=a;
+            rug[rows-1][i]=a;
         }
         start_row++;
+        rows--;
 
-        // fill the last col      
+        // fill the last+first col      
         for(i = start_row;i<rows; i++){
-            rug[i][colls-1]=n1;
+            rug[i][colls-1]=a;
+            rug[i][start_col]=a;
+
         }
         colls--;
-        
-        
-        //fill the last row
-        if(start_row<rows){
-            for(i = colls-1; i>=start_col ; i--){
-                rug[rows-1][i]=n1;
-            }
-            rows--;
-            
-        }
-        //fill the first col
-        if(start_col<colls)
-        {
-            for(i=rows-1; i>=start_row ; i--){
-                rug[i][start_col]=n1;
-            }
-            start_col++;
+        start_col++;
+           
 
-        }
         //flip char 
-        if(n1 != int(n2)){
-         temp = n1;
-         n1 = n2 ; 
-         n2 = temp;     
+        if(a != b){
+         temp = a;
+         a = b ; 
+         b = temp;     
      }
     }  
-    for(int i = 0;i < size_rows;i++){ 
+        res = resandprint(rug,size_rows,size_colls);
+
+    return res;
+}
+
+
+string resandprint(vector<vector<char>>&rug ,int rows , int colls )
+{
+    string ans;
+for(int i = 0;i < rows;i++){ 
         if(i>0){
             cout << endl;
         }
-        for(int j = 0 ; j <size_colls; j++){
+        for(int j = 0 ; j <colls; j++){
             cout << rug[i][j] << " ";
-            res += rug[i][j];
+            ans+=rug[i][j];
         }
     }
-    return res;
+    return ans;
+
 }
+
+
+
+
+
 
 
 
